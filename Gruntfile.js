@@ -1,6 +1,6 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 9000;
+var SERVER_PORT = 9002;
 var lrSnippet = require('connect-livereload')({
     port: LIVERELOAD_PORT
 });
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         watch: {
             options: {
                 nospawn: true,
-                livereload: true
+                livereload: false
             },
             sass: {
                 files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}', '<%= yeoman.app %>/styles/_partials/**/*.{scss,sass}'],

@@ -3,7 +3,7 @@
 define([
 	'jquery', 'backbone', 'text!templates/main.html', 'text!locale/main.json', 'text!locale/es_mx/main.json',
 	'text!templates/dateRangeTemplate.html', 'text!templates/distributionPattern.html', 'text!templates/stateTemplate.html',
-	'text!templates/recallStatusTemplate.html', 'text!templates/deviceRecallCountTemplate.html',
+	'text!templates/recallStatusTemplate.html', 'text!templates/drugRecallCountTemplate.html',
 	'text!templates/resultsSubTemplate.html', 'text!templates/detailsTemplate.html',
 	'collections/recalledDrugCollection', 'd3', 'c3', 'helpers/uStates', 'collections/termsCollection',
 ], function($, Backbone, template, content, contentES, DateRangeTemplate, DistributionPatternTemplate, StateTemplate, RecallStatusTemplate,
@@ -23,7 +23,7 @@ define([
 
 		stateList: '',
 
-		dateRange: [2012, 2018],
+		dateRange: [2012, 2015],
 
 		totalCount: 0,
 		// View constructor
@@ -60,9 +60,9 @@ define([
 
 			//load the advanced search items
 			this.loadAdvancedSearch();
-			this.loadFoodRecallCountDetails();
+			this.loadDrugRecallCountDetails();
 			var self = this;
-			this.$el.find('#select-fooditem').selectize({
+			this.$el.find('#select-drugitem').selectize({
 				maxItems: 3,
 				plugins: ['remove_button'],
 				delimiter: ',',
@@ -173,23 +173,21 @@ define([
 				classiii: '#F5D60A'
 			});
 		},
-		loadFoodRecallCountDetails: function() {
-			//Pathogen recall count
-			this.loadRecallCount('antibiotics', this.antibioticsCollection, DrugRecallCountTemplate, window.gblAntibioticsCount);
-			this.loadRecallCount('antivirals', this.antiviralsCollection, DrugRecallCountTemplate, window.gblAntiviralsCount);
-			this.loadRecallCount('antifungal', this.antifungalCollection, DrugRecallCountTemplate, window.gblAntifungalCount);
-			
-			//this.loadRecallCount('norovirus', this.norovirusCollection, DrugRecallCountTemplate, window.gblNorovirusCount);
-			//this.loadRecallCount('listeria', this.listeriaCollection, DrugRecallCountTemplate, window.gblListeriaCount);
-			//this.loadRecallCount('ecoli', this.ecoliCollection, DrugRecallCountTemplate, window.gblEcoliCount);
+		loadDrugRecallCountDetails: function() {
+			//Recall Reason count
+			this.loadRecallCount('sterility', this.sterilityCollection, DrugRecallCountTemplate, window.gblSterilityCount);
+			this.loadRecallCount('subpotent', this.subpotentCollection, DrugRecallCountTemplate, window.gblSubpotentCount);
+			this.loadRecallCount('contamination', this.contaminationCollection, DrugRecallCountTemplate, window.gblContaminationCount);
+			this.loadRecallCount('particulate', this.particulateCollection, DrugRecallCountTemplate, window.gblParticulateCount);
+			this.loadRecallCount('gmpdeviation', this.gmpdeviationCollection, DrugRecallCountTemplate, window.gblGmpdeviationCount);
 
-			//food pyramid recall count
-			//this.loadRecallCount('grain', this.grainCollection, DrugRecallCountTemplate, window.gblGrainCount);
-			//this.loadRecallCount('vegetable', this.vegetableCollection, DrugRecallCountTemplate, window.gblVegetableCount);
-			//this.loadRecallCount('fruit', this.fruitCollection, DrugRecallCountTemplate, window.gblFruitCount);
-			//this.loadRecallCount('oil', this.oilCollection, DrugRecallCountTemplate, window.gblOilCount);
-			//this.loadRecallCount('dairy', this.dairyCollection, DrugRecallCountTemplate, window.gblDairyCount);
-			//this.loadRecallCount('meat', this.meatCollection, DrugRecallCountTemplate, window.gblMeatCount);
+			//Drug type recall count
+			this.loadRecallCount('antibiotic', this.antibioticCollection, DrugRecallCountTemplate, window.gblAntibioticCount);
+			this.loadRecallCount('antifungal', this.antifungalCollection, DrugRecallCountTemplate, window.gblAntifungalCount);
+			this.loadRecallCount('anticoagulant', this.anticoagulantCollection, DrugRecallCountTemplate, window.gblAnticoagulantCount);
+			this.loadRecallCount('analgesic', this.analgesicCollection, DrugRecallCountTemplate, window.gblAnalgesicCount);
+			this.loadRecallCount('antidepressant', this.antidepressantCollection, DrugRecallCountTemplate, window.gblAntidepressantCount);
+			
 		},
 		//Load Recall Count Collection and template
 		loadRecallCount: function(id, collectionName, templateName, serviceurl) {
@@ -202,7 +200,7 @@ define([
 				self.loadRecallTemplate(id, templateName, collectionName.sort().toJSON());
 			});
 		},
-		loadRecallTemplate: function(id, templateName, collectiondata) {
+		loadRecallTemplate: function(id, templateName, collectionsectiondata) {
 			this.drugRecallTemplate = _.template(templateName, {
 				data: collectiondata
 			});

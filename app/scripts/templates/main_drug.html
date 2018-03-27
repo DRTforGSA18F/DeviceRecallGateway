@@ -1,0 +1,156 @@
+<p>Welcome to our BETA site.  It is presented as a public service meant to complement the abundance of helpful drug safety information available to the public.  This is NOT a website of the United States government.</p>
+
+<h1 id="home" tabindex="-1"><%=content.headerText %><span class="sr-only">Drug Recall Gateway</span></h1>
+
+<p>
+    Welcome to the Drug Recall Gateway site! This site serves as a go-to resource for consumers to know when and where drug recalls are occurring across the United States. <span id="extraText" style="display:none">The data provided on this site is intended to complement the federal information site, <a href="http://www.foodsafety.gov/" target="_blank">FoodSafety.gov</a>, by presenting dynamic visualizations of current drug recall trends and user-friendly tools to inform consumers’ medical habits. </span><a id="showMoreText" href="javascript:void(0)">Read More</a>
+</p>
+<p>
+  <%=content.seachDescription %>
+</p>
+<!-- search section start-->
+<div class="well  mtl mbl">
+  <div id="searchContainer" class="row">
+      <div class="col-md-9">
+        <label for="select-fooditem" class="h2 mtn">Quick Search</label>
+        <p>Multiple terms (up to three keywords related to recall reason) can be entered into the single search box.</p>
+      </div>
+      <div class="col-md-6">        
+          <select id="select-fooditem" placeholder="Type here and select a reason for recall" name="searchTerms" multiple>
+              <option value="">Select a reason for recall...</option>
+              <option value="Lack of Sterility">Lack of Sterility</option>
+              <option value="Subpotent">Subpotent</option>
+              <option value="Contamination">Contamination</option>
+              <option value="Presence of particulate matter">Presence of particulate matter</option>
+              <option value="GMP Deviations">GMP Deviations</option>
+          </select>
+      </div>
+      <div class="col-md-3 col-xs-6">
+          <button id="btnSearch" class="btn btn-primary btn-block active"><i class="fa fa-search"></i> Search</button>
+      </div>
+      <div class="col-md-3 col-xs-6">
+          <button type="button" class="btn btn-info active" data-toggle="collapse" data-target="#advSearchContainer">Advanced Search</button>
+      </div>
+
+      <div class="col-xs-12 collapse" id="advSearchContainer">
+          <div class=" top_arrow_box mtl">
+              <div class="row mbs">
+                <div class="col-md-12">
+                  <p>The Advanced Search function allows users to generate a more robust display of recent drug recalls across the United States. You can select a year range, multiple keywords, search by multiple states, and filter results by drug recall status.  Note: (Note: the data reported for 2015 is as of May 30, 2015).</p>
+                </div>
+              </div>
+              <form role="form" class="row">
+                <div class="col-md-4 col-xs-12" id="dateRangeSection">
+            
+                </div>
+                <div class="col-md-5 col-xs-12" id="stateSection">
+                  
+                </div>
+                <div class="col-md-3 col-xs-12" id="recallStatusSection">
+
+                </div>            
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- search section end -->
+<!-- start results section -->
+<div id="resultsSection">
+</div>
+<!-- End Results Section-->
+<!-- start details Section -->
+<div id="detailsSection"></div>
+<!-- end details section -->
+<!-- start food pyramid section-->
+<div id="drugInfoSection">
+  <hr />
+  <h2 id="drugInfo"  tabindex="-1">My Plate</h2>
+  <p>Drug Recall Gateway aims to present drug safety data in a way that makes sense to you.  Below you can view the latest FDA drug recalls organized by the type of drug. The boxes below will help consumers become aware of the latest FDA drug recalls by hazard level.</p>
+  <div class="row mts">
+      <div class="col-lg-5"><img class="img-responsive" style="padding: 10%;" src="http://www.choosemyplate.gov/images/MyPlateImages/JPG/myplate_white.jpg">
+      <a class="text-center" href="http://www.choosemyplate.gov/about.html ">http://www.choosemyplate.gov/about.html </a></div>
+      <div class="col-lg-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">FDA Drug Recall Classifications
+            </div>
+            <div class="panel-body"> 
+            <p>FDA Drug Recall Classifications (classification – OpenFDA data field name) link for see <a href="http://www.fda.gov/ForConsumers/ConsumerUpdates/ucm049070.htm" target="_blank">FDA 101: Recall Classifications</a></p>
+              <p>Class I: Dangerous or defective drug products that predictably could cause serious health problems or death.</p>
+              <p>Class II: Drug Products that might cause a temporary health problem, or pose only a slight threat of a serious nature.</p>
+              <p>Class III: Drug products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws.</p>
+            </div>
+        </div>
+      </div>
+      
+      <!--<div class="col-lg-3"><div class="panel panel-oil"><div class="panel-heading">oil</div><div class="panel-body"><%=content.oilText %><div id="oil"></div></div></div></div>-->
+      <div class="col-lg-3"><div class="panel panel-grain"><div class="panel-heading">Antibiotics</div><div class="panel-body"><%=content.antibioticsText %><div id="Antibiotic"></div></div></div></div>
+      <div class="col-lg-3"><div class="panel panel-vegetable"><div class="panel-heading">Antivirals</div><div class="panel-body"><%=content.antiviralsText %><div id="Antiviral"></div></div></div></div>
+      <div class="col-lg-3"><div class="panel panel-grain"><div class="panel-heading">Grains</div><div class="panel-body"><%=content.grainText %><div id="grain"></div></div></div></div>
+      <div class="col-lg-3"><div class="panel panel-vegetable"><div class="panel-heading">Vegetables</div><div class="panel-body"><%=content.vegetableText %><div id="vegetable"></div></div></div></div>      
+      <div class="col-lg-3"><div class="panel panel-meat"><div class="panel-heading">Protein</div><div class="panel-body"><%=content.meatText %><div id="meat"></div></div></div></div>
+  </div>  
+</div>
+<!-- end food pyramid section -->
+<!-- start food pathogens section -->
+<div id="foodPathogensSection"><div>
+  <hr />
+  <h2 id="foodPathogens" tabindex="-1">Food Pathogens</h2>
+  <div class="row">
+    <div class="col-lg-8">
+   <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><a href="http://www.homefoodsafety.org/food-poisoning/foodborne-pathogens#salmonella" target="blank">Salmonella</a></h3>
+                    <p>
+                      <%=content.salmonellaText %>
+                    </p>
+                    <div id="salmonella"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><a href="http://www.homefoodsafety.org/food-poisoning/foodborne-pathogens#Norovirus" target="blank">Norovirus</a></h3>
+                    <p>
+                        <%=content.norovirusText %>
+                    </p>
+                    <div id="norovirus"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><a href="http://www.homefoodsafety.org/food-poisoning/foodborne-pathogens#Listeria" target="blank">Listeria</a></h3>
+                    <p>
+                        <%=content.listeriaText %>
+                    </p>
+                    <div id="listeria"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><a href="http://www.homefoodsafety.org/food-poisoning/foodborne-pathogens#E. coli" target="blank">E. coli</a></h3>
+                    <p>
+                         <%=content.ecoliText %>
+                    </p>
+                    <div id="ecoli"></div>                  
+
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+
+    <div class="col-lg-4">
+      <a class="twitter-timeline" href="https://twitter.com/FDA_Drug_Info" data-widget-id="613006443734806529">Tweets by @FDA_Drug_Info</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+  </div>
+</div>
+<!-- end food pathogen section -->
